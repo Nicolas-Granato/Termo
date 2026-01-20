@@ -39,11 +39,30 @@ string Sistema::palavraChave(){
     return;
 }
 
+bool Sistema::verificacaoPalavraUsuario(string palavraUsuario){
+    string linha;
+    ifstream listaDePalavras("Termo\\dicionarioTratado.txt");
+
+    if (listaDePalavras.is_open()){
+
+        while (listaDePalavras >> linha){
+            if (palavraUsuario == linha){
+                return true;
+            }
+        }
+
+    return false;
+    }
+
+    cout << "ERRO! Arquivo não conseguiu ser aberto!" << endl;
+    return false;
+}
+
 string Usuario::entradaPalavraUsuario(){
     string palavraUsuario;
 
     cout << "Escreva sua palavra: " << endl;
     cin >> palavraUsuario;
 
-    
+    return palavraUsuario;
 }

@@ -4,7 +4,7 @@
 
 struct Sistema{
     std::string palavraChave();
-    bool verificacaoPalavraUsuario();
+    bool verificacaoPalavraUsuario(string palavraUsuario);
 };
 
 struct Usuario{

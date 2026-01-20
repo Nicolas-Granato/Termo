@@ -58,6 +58,10 @@ bool Sistema::verificacaoPalavraUsuario(string palavraUsuario){
     return false;
 }
 
+bool Sistema::comparacaoUsuarioMaquina(string palavraUsuario, string palavraChave()){
+    
+}
+
 string Usuario::entradaPalavraUsuario(){
     string palavraUsuario;
 

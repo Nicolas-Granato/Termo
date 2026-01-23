@@ -9,7 +9,7 @@ using namespace std;
 string Sistema::palavraChave(){
     random_device rd;
     mt19937 gerador(rd());
-    uniform_int_distribution<int> distribuicao(1, 11397);
+    uniform_int_distribution<int> distribuicao(0, 11396);
 
     int indicePalavra = distribuicao(gerador);
     string palavraAlvo;
@@ -24,7 +24,7 @@ string Sistema::palavraChave(){
 
         if (bytesPrimeiraLinha <= 0){
             cout << "ERRO!!! Byte não encontrado!" << endl;
-            return;
+            return "";
         }
 
         int posicaoByte = bytesPrimeiraLinha * indicePalavra;
@@ -37,7 +37,7 @@ string Sistema::palavraChave(){
     }
 
     cout << "ERRO!!! Arquivo inexistente!" << endl;
-    return;
+    return "";
 }
 
 bool Sistema::verificacaoPalavraUsuario(string palavraUsuario){
@@ -59,31 +59,38 @@ bool Sistema::verificacaoPalavraUsuario(string palavraUsuario){
     return false;
 }
 
-bool Sistema::comparacaoUsuarioMaquina(string palavraUsuario, string palavraMaquina){
+bool Sistema::comparacaoUsuarioMaquina(string palavraUsuario, string palavraMaquina) {
     char resultado[6] = {'_', '_', '_', '_', '_', '_'};
+    bool letrasDaMaquinaJaUsadas[6] = {false, false, false, false, false, false}; 
     int acertos = 0;
 
-    for (int i = 0; i < 6; i++){
-        if (palavraUsuario[i] == palavraMaquina[i]){
+    for (int i = 0; i < 6; i++) {
+        if (palavraUsuario[i] == palavraMaquina[i]) {
             resultado[i] = 'O';
-            acertos ++;
+            letrasDaMaquinaJaUsadas[i] = true;
+            acertos++;
         }
+    }
 
-        for (int j = 0; j < 6; j++){
-            if (palavraUsuario[i] == palavraMaquina[j] && 
-                palavraUsuario[i] != palavraMaquina[i]){
-                    resultado[i] = 'X';
+    for (int i = 0; i < 6; i++) {
+        if (resultado[i] == 'O') continue; 
+
+        for (int j = 0; j < 6; j++) {
+            if (palavraUsuario[i] == palavraMaquina[j] && !letrasDaMaquinaJaUsadas[j]) {
+                resultado[i] = 'X';
+                letrasDaMaquinaJaUsadas[j] = true;
+                break;
             }
         }
+    }
 
-        for (int i = 0; i < 6; i++){
-            cout << resultado[i];
-        }
-        cout << "\n";
+    for (int i = 0; i < 6; i++) {
+        cout << resultado[i];
+    }
+    cout << "\n";
 
-        if (acertos == 6){
-            return true;
-        }
+    if (acertos == 6) {
+        return true;
     }
 
     return false;
@@ -124,20 +131,22 @@ void Sistema::regras(){
     cout << " [ O ] -> ACERTOU! A letra esta na posicao correta." << endl;
     cout << " [ X ] -> QUASE! A letra existe, mas noutro lugar." << endl;
     cout << " [ _ ] -> ERROU! A letra nao existe na palavra." << endl;
+    cout << "==========================================" << endl;
+    cout << endl;
     return;
 }
 
 int Sistema::dificuldade(){
     char dificuldade;
     cout << "Escolha a dificuldade:" << endl;
-    cout << "1-Facil(10 tentativas)\n2-Medio(7 tentativas)\n3-Difícil(4 tentativas)" << endl;
+    cout << "1-Facil(10 tentativas)\n2-Medio(7 tentativas)\n3-Dificil(4 tentativas)" << endl;
     cin >> dificuldade;
 
-    while (dificuldade != 1 && 
-        dificuldade != 2 && 
-        dificuldade != 3){
+    while (dificuldade != '1' && 
+        dificuldade != '2' && 
+        dificuldade != '3'){
         cout << "ERRO: Opcao inexistente..." << endl;
-        cout << "1-Facil(10 tentativas)\n2-Medio(7 tentativas)\n3-Difícil(4 tentativas)" << endl;
+        cout << "1-Facil(10 tentativas)\n2-Medio(7 tentativas)\n3-Dificil(4 tentativas)" << endl;
         cin >> dificuldade;
     }
 

@@ -4,8 +4,8 @@
 
 struct Sistema{
     std::string palavraChave();
-    bool verificacaoPalavraUsuario(string palavraUsuario);
-    bool comparacaoUsuarioMaquina(string palavraUsuario, string palavraMaquina);
+    bool verificacaoPalavraUsuario(std::string palavraUsuario);
+    bool comparacaoUsuarioMaquina(std::string palavraUsuario, std::string palavraMaquina);
     char opcoesDeInicializacao();
     void regras();
     int dificuldade();

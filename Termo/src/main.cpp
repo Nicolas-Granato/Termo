@@ -7,12 +7,12 @@ int main(){
     int dificuldade;
     Sistema sistema;
 
-    cout << "==================Início Termo==================" << endl;
-    int variavelDeInicializacao = sistema.opcoesDeInicializacao();
+    cout << "==================Inicio Termo==================" << endl;
+    variavelDeInicializacao = sistema.opcoesDeInicializacao();
 
-    if (variavelDeInicializacao == '2'){
+    while (variavelDeInicializacao == '2'){
         sistema.regras();
-        int variavelDeInicializacao = sistema.opcoesDeInicializacao();
+        variavelDeInicializacao = sistema.opcoesDeInicializacao();
     }
 
     while (variavelDeInicializacao == '1'){
@@ -23,6 +23,12 @@ int main(){
         cout << endl;
         cout << "Escolhendo a palavra..." << endl;
         palavraMaquina = sistema.palavraChave();
+
+        if (palavraMaquina == ""){
+            cout << "ERRO!" << endl;
+            return 1;
+        }
+        
 
         for (int i = 0; i < tentativas; i++){
             string palavraUsuario = sistema.entradaPalavraUsuario();
@@ -55,7 +61,7 @@ int main(){
         variavelDeInicializacao = sistema.opcoesDeInicializacao();
         if (variavelDeInicializacao == '2'){
             sistema.regras();
-            int variavelDeInicializacao = sistema.opcoesDeInicializacao();
+            variavelDeInicializacao = sistema.opcoesDeInicializacao();
         }
     }
     return 0;

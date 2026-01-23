@@ -58,8 +58,34 @@ bool Sistema::verificacaoPalavraUsuario(string palavraUsuario){
     return false;
 }
 
-bool Sistema::comparacaoUsuarioMaquina(string palavraUsuario, string palavraChave()){
-    
+bool Sistema::comparacaoUsuarioMaquina(string palavraUsuario, string palavraMaquina){
+    char resultado[6] = {'_', '_', '_', '_', '_', '_'};
+    int acertos = 0;
+
+    for (int i = 0; i < 6; i++){
+        if (palavraUsuario[i] == palavraMaquina[i]){
+            resultado[i] = 'O';
+            acertos ++;
+        }
+
+        for (int j = 0; j < 6; j++){
+            if (palavraUsuario[i] == palavraMaquina[j] && 
+                palavraUsuario[i] != palavraMaquina[i]){
+                    resultado[i] = 'X';
+            }
+        }
+
+        for (int i = 0; i < 6; i++){
+            cout << resultado[i];
+        }
+        cout << "\n";
+
+        if (acertos == 6){
+            return true;
+        }
+
+        return false;
+    }
 }
 
 string Usuario::entradaPalavraUsuario(){

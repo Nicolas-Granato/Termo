@@ -44,6 +44,7 @@ Trab2Alg1/ (Pasta Raiz)
 │   └── dicionarioSemAcento(bruto).txt  # Arquivo de entrada original
 │
 └── README.md
-    
-Aluno:[Nícolas Granato Lempk Barbosa]
+```
+✒️ Autor
+Aluno: [Nícolas Granato Lempk Barbosa]
 Matrícula: [202576016]

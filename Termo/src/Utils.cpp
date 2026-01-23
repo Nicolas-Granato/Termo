@@ -9,7 +9,7 @@ using namespace std;
 string Sistema::palavraChave(){
     random_device rd;
     mt19937 gerador(rd());
-    uniform_int_distribution<int> distribuicao(0, 11396);
+    uniform_int_distribution<int> distribuicao(1, 11397);
 
     int indicePalavra = distribuicao(gerador);
     string palavraAlvo;
@@ -17,22 +17,10 @@ string Sistema::palavraChave(){
     ifstream listaDePalavras("Termo\\dicionarioTratado.txt");
 
     if (listaDePalavras.is_open()){
-        string primeiraLinha;
-        getline(listaDePalavras, primeiraLinha);
-
-        int bytesPrimeiraLinha = listaDePalavras.tellg();
-
-        if (bytesPrimeiraLinha <= 0){
-            cout << "ERRO!!! Byte não encontrado!" << endl;
-            return "";
+        for (int i = 0; i != indicePalavra; i++){
+            listaDePalavras >> palavraAlvo;
         }
-
-        int posicaoByte = bytesPrimeiraLinha * indicePalavra;
-
-        listaDePalavras.seekg(posicaoByte, ios::beg);
-
-        listaDePalavras >> palavraAlvo;
-
+        
         return palavraAlvo;
     }
 
@@ -44,6 +32,11 @@ bool Sistema::verificacaoPalavraUsuario(string palavraUsuario){
     string linha;
     ifstream listaDePalavras("Termo\\dicionarioTratado.txt");
 
+    if (palavraUsuario.length() != 6){
+            cout << "A palavra deve ter 6 caracteres..." << endl;
+            return false;
+    }
+
     if (listaDePalavras.is_open()){
 
         while (listaDePalavras >> linha){
@@ -51,7 +44,8 @@ bool Sistema::verificacaoPalavraUsuario(string palavraUsuario){
                 return true;
             }
         }
-
+    
+    cout << "Palavra invalida..." << endl;
     return false;
     }
 

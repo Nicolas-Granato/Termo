@@ -21,8 +21,9 @@ int main(){
         bool ganhou;
 
         cout << endl;
-        cout << "Escolhendo a palavra..." << endl;
+        cout << "Escolhendo a palavra...\n" << endl;
         palavraMaquina = sistema.palavraChave();
+        cout << palavraMaquina << endl;
 
         if (palavraMaquina == ""){
             cout << "ERRO!" << endl;
@@ -35,7 +36,6 @@ int main(){
             bool palavraExiste = sistema.verificacaoPalavraUsuario(palavraUsuario);
 
             while (!palavraExiste){
-                cout << "Palavra Inexistente!" << endl;
                 cin >> palavraUsuario;
                 palavraExiste = sistema.verificacaoPalavraUsuario(palavraUsuario);
             }
@@ -52,12 +52,12 @@ int main(){
             cout << "Parabens!!!" << endl;
             cout << "Voce ganhou!!" << endl;
         } else {
-            cout << "Infelizmente não foi dessa vez..." << endl;
+            cout << "Infelizmente não foi dessa vez...\n" << endl;
         }
         
         cout << endl;
 
-        cout << "Gostaria de jogar mais uma vez?" << endl;
+        cout << "Gostaria de jogar mais uma vez?\n" << endl;
         variavelDeInicializacao = sistema.opcoesDeInicializacao();
         if (variavelDeInicializacao == '2'){
             sistema.regras();

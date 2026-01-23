@@ -1,33 +1,49 @@
-# 🟩 Termo em C++
+# 🟩 Projeto Termo (C++)
 
-Este projeto é uma implementação em C++ do popular jogo de palavras "Termo" (similar ao Wordle), desenvolvido como trabalho para a disciplina de **Algoritmos 1**.
+Este repositório contém a implementação completa do jogo **Termo** (clone do Wordle), desenvolvido como trabalho para a disciplina de **Algoritmos 1**. 
 
-O jogo consiste em adivinhar uma palavra secreta de 6 letras sorteada aleatoriamente de um dicionário, com um sistema de feedback visual e níveis de dificuldade.
+O projeto é composto por dois módulos principais:
+1.  🎮 **O Jogo:** A aplicação interativa onde o usuário tenta adivinhar a palavra.
+2.  ⚙️ **Ferramenta de Tratamento:** Um utilitário que processa um dicionário bruto e gera um arquivo limpo com palavras de 6 letras.
 
 ## 🚀 Funcionalidades
 
-- **Sorteio Aleatório:** O sistema escolhe uma palavra aleatória de um banco de dados (`dicionarioTratado.txt`) contendo milhares de verbetes.
-- **Validação de Entrada:** Verifica se a palavra digitada pelo usuário existe no dicionário e se possui o tamanho correto.
-- **Sistema de Feedback:**
-  - `[ O ]` **Verde:** Letra correta na posição correta.
+### Do Jogo
+- **Sorteio Aleatório:** Seleciona palavras de um banco de dados tratado.
+- **Feedback Visual:**
+  - `[ O ]` **Verde:** Letra certa na posição certa.
   - `[ X ]` **Amarelo:** Letra existe na palavra, mas em outra posição.
-  - `[ _ ]` **Cinza:** Letra não existe na palavra (ou já foi contabilizada).
-- **Tratamento de Letras Repetidas:** Lógica avançada para garantir que letras duplicadas sejam marcadas corretamente (evitando "falsos positivos").
-- **Dificuldade:**
-  1. Fácil (10 tentativas)
-  2. Médio (7 tentativas)
-  3. Difícil (4 tentativas)
+  - `[ _ ]` **Cinza:** Letra não existe.
+- **Validação Lógica:** Algoritmo de "duas passadas" para tratar corretamente letras repetidas.
+- **Dificuldade:** Níveis Fácil, Médio e Difícil (varia o número de tentativas).
 
-## 📂 Estrutura do Projeto
+### Da Ferramenta (Tratamento)
+- Leitura de arquivo bruto (`.txt`).
+- Filtragem de palavras baseada em contagem de caracteres (exclusivamente 6 letras).
+- Geração automática do arquivo `dicionarioTratado.txt`.
 
-O projeto segue a seguinte organização de diretórios:
+## 📂 Estrutura de Pastas
+
+A organização do projeto separa o código-fonte do jogo do código de tratamento de dados:
 
 ```text
-Termo/
+Trab2Alg1/ (Pasta Raiz)
 │
-├── dicionarioTratado.txt  # Banco de palavras (6 letras)
-├── README.md              # Documentação do projeto
-└── src/                   # Códigos-fonte
-    ├── main.cpp           # Loop principal do jogo
-    ├── Utils.cpp          # Implementação das funções lógicas
-    └── Utils.h            # Declaração das estruturas e cabeçalhos
+├── Termo/                          # Módulo do Jogo
+│   ├── src/
+│   │   ├── main.cpp                # Loop principal do jogo
+│   │   ├── Utils.cpp               # Lógica de gameplay e validação
+│   │   └── Utils.h                 # Cabeçalhos
+│   └── dicionarioTratado.txt       # (Gerado) Arquivo final usado pelo jogo
+│
+├── tratamentoDoDicionario/         # Módulo da Ferramenta
+│   ├── src/
+│   │   ├── main.cpp                # Executável do gerador
+│   │   ├── Utils.cpp               # Lógica de filtragem
+│   │   └── Utils.h                 # Cabeçalhos
+│   └── dicionarioSemAcento(bruto).txt  # Arquivo de entrada original
+│
+└── README.md
+    
+Aluno:[Nícolas Granato Lempk Barbosa]
+Matrícula: [202576016]

@@ -45,6 +45,6 @@ Trab2Alg1/ (Pasta Raiz)
 │
 └── README.md
 ```
-✒️ Autor
+### ✒️ Autor
 Aluno: [Nícolas Granato Lempk Barbosa]
 Matrícula: [202576016]

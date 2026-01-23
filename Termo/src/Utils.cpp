@@ -2,6 +2,7 @@
 #include <fstream>
 #include <random>
 #include <string>
+#include <map>
 #include "Utils.h"
 using namespace std;
 
@@ -83,16 +84,68 @@ bool Sistema::comparacaoUsuarioMaquina(string palavraUsuario, string palavraMaqu
         if (acertos == 6){
             return true;
         }
-
-        return false;
     }
+
+    return false;
 }
 
-string Usuario::entradaPalavraUsuario(){
+string Sistema::entradaPalavraUsuario(){
     string palavraUsuario;
 
     cout << "Escreva sua palavra: " << endl;
     cin >> palavraUsuario;
 
     return palavraUsuario;
+}
+
+char Sistema::opcoesDeInicializacao(){
+    char variavelDeInicializacao;
+    cout << "Iniciar partida(1) --- Regras(2) --- Sair do jogo(0)" << endl;
+    cin >> variavelDeInicializacao;
+
+    while (variavelDeInicializacao != '1' && 
+        variavelDeInicializacao != '2' && 
+        variavelDeInicializacao != '0'){
+        cout << "ERRO: Opcao inexistente..." << endl;
+        cout << "Iniciar partida(1) --- Regras(2) --- Sair do jogo(0)" << endl;
+        cin >> variavelDeInicializacao;
+    }
+
+    return variavelDeInicializacao;
+}
+
+void Sistema::regras(){
+    cout << "==================REGRAS==================" << endl;
+    cout << endl;
+    cout << " OBJETIVO: Descubra a palavra secreta!" << endl;
+    cout << " Voce tem um numero limitado de tentativas." << endl;
+    cout << endl;
+    cout << " --- LEGENDA DO FEEDBACK ---" << endl;
+    cout << " [ O ] -> ACERTOU! A letra esta na posicao correta." << endl;
+    cout << " [ X ] -> QUASE! A letra existe, mas noutro lugar." << endl;
+    cout << " [ _ ] -> ERROU! A letra nao existe na palavra." << endl;
+    return;
+}
+
+int Sistema::dificuldade(){
+    char dificuldade;
+    cout << "Escolha a dificuldade:" << endl;
+    cout << "1-Facil(10 tentativas)\n2-Medio(7 tentativas)\n3-Difícil(4 tentativas)" << endl;
+    cin >> dificuldade;
+
+    while (dificuldade != 1 && 
+        dificuldade != 2 && 
+        dificuldade != 3){
+        cout << "ERRO: Opcao inexistente..." << endl;
+        cout << "1-Facil(10 tentativas)\n2-Medio(7 tentativas)\n3-Difícil(4 tentativas)" << endl;
+        cin >> dificuldade;
+    }
+
+    map<char, int> tentativas;
+
+    tentativas['1'] = 10;
+    tentativas['2'] = 7;
+    tentativas['3'] = 4;
+
+    return tentativas[dificuldade];
 }

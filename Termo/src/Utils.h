@@ -6,9 +6,9 @@ struct Sistema{
     std::string palavraChave();
     bool verificacaoPalavraUsuario(string palavraUsuario);
     bool comparacaoUsuarioMaquina(string palavraUsuario, string palavraMaquina);
-};
-
-struct Usuario{
+    char opcoesDeInicializacao();
+    void regras();
+    int dificuldade();
     std::string entradaPalavraUsuario();
 };
 
